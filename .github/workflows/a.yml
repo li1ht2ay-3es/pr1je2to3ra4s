@@ -27,13 +27,14 @@ jobs:
       with:
         arch: ${{ matrix.arch }}
 
-    - run: |
-        install: >-
-          mingw-w64-x86_64-zlib
-          mingw-w64-x86_64-boost
+
+    - shell: bash
+      run: |
+        sudo apt-get install \
+          mingw-w64-x86_64-zlib \
+          mingw-w64-x86_64-boost \
           mingw-w64-x86_64-mpg123
-          # mingw-w64-x86_64-toolchain
-          # vim
+
 
     - uses: hendrikmuhs/ccache-action@main
       with:
