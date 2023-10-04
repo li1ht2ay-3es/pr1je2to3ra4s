@@ -1,6 +1,8 @@
 on:
   push:
   workflow_dispatch:
+    inputs:
+      input_file:
 
 
 jobs:
@@ -49,6 +51,12 @@ jobs:
         CXX: ccache g++
       run: |
         make
+
+
+    - shell: bash
+      if: inputs.input_file != ""
+      run: |
+        projectorrays --dump-scripts --dump-chunks --dump-json ${{ inputs.input_file }} unpack.out
 
 
     - uses: actions/upload-artifact@main
