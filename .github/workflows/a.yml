@@ -23,17 +23,9 @@ jobs:
         auto: true
 
 
-    - uses: li1ht2ay-3es/gi1-ac2io3s@mingw-install
-      with:
-        arch: ${{ matrix.arch }}
-
-
     - shell: bash
       run: |
-        sudo apt-get install \
-          mingw-w64-x86_64-zlib \
-          mingw-w64-x86_64-boost \
-          mingw-w64-x86_64-mpg123
+        sudo apt-get install libboost-all-dev
 
 
     - uses: hendrikmuhs/ccache-action@main
