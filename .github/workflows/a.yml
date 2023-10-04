@@ -25,7 +25,9 @@ jobs:
 
     - shell: bash
       run: |
-        sudo apt-get install libboost-all-dev
+        sudo apt-get install \
+          libboost-all-dev \
+          mpg123
 
 
     - uses: hendrikmuhs/ccache-action@main
