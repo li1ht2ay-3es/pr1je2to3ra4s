@@ -1,5 +1,5 @@
 on:
-  push:
+  # push:
   workflow_dispatch:
     inputs:
       input_file:
@@ -57,7 +57,7 @@ jobs:
       if: inputs.input_file != ''
       run: |
         ls -a
-        projectorrays --dump-scripts --dump-chunks --dump-json ${{ inputs.input_file }} unpack.out
+        ./projectorrays --dump-scripts --dump-chunks --dump-json ${{ inputs.input_file }} unpack.out
 
 
     - uses: actions/upload-artifact@main
