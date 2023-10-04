@@ -54,7 +54,7 @@ jobs:
 
 
     - shell: bash
-      if: inputs.input_file != ""
+      if: inputs.input_file != ''
       run: |
         projectorrays --dump-scripts --dump-chunks --dump-json ${{ inputs.input_file }} unpack.out
 
