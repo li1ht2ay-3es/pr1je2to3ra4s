@@ -54,5 +54,8 @@ jobs:
     - uses: actions/upload-artifact@main
       with:
         path: |
-          *.*
-          !*.exe
+          *.bin
+          *.json
+          *.ls
+          *.lasm
+          *.out
