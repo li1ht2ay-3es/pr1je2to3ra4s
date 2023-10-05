@@ -56,8 +56,8 @@ jobs:
     - shell: bash
       if: inputs.input_file != ''
       run: |
+        ./projectorrays decompile ${{ inputs.input_file }} --dump-scripts --dump-chunks --dump-json
         ls -a
-        ./projectorrays --dump-scripts --dump-chunks --dump-json ${{ inputs.input_file }} unpack.out
 
 
     - uses: actions/upload-artifact@main
