@@ -57,7 +57,7 @@ jobs:
       if: inputs.input_file != ''
       run: |
         ./projectorrays decompile ${{ inputs.input_file }} --dump-scripts --dump-chunks --dump-json
-        ls -a
+        # ls -a
 
 
     - uses: actions/upload-artifact@main
@@ -67,4 +67,5 @@ jobs:
           *.json
           *.ls
           *.lasm
-          *.out
+          *.dir
+          *.cst
