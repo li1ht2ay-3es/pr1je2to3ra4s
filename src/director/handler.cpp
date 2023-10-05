@@ -1265,6 +1265,12 @@ std::string posToString(int32_t pos) {
 	return ss.str();
 }
 
+std::string hexToString(int32_t pos, int32_t size) {
+    std::ostringstream ss;
+	ss << "{" << std::setfill('0') << std::setw(size*2) << std::hex << pos << "}";
+	return ss.str();
+}
+
 void Handler::writeBytecodeText(Common::CodeWriter &code) {
 	bool dotSyntax = script->dir->dotSyntax;
 	bool isMethod = script->isFactory();
@@ -1291,24 +1297,34 @@ void Handler::writeBytecodeText(Common::CodeWriter &code) {
 		code.write(posToString(bytecode.pos));
 		code.write(" ");
 		code.write(Lingo::getOpcodeName(bytecode.opID));
+		code.write(" ");
+		code.write(hexToString(bytecode.opID,1));
 		switch (bytecode.opcode) {
 		case kOpJmp:
 		case kOpJmpIfZ:
 			code.write(" ");
 			code.write(posToString(bytecode.pos + bytecode.obj));
+			code.write(" ");
+			code.write(hexToString(bytecode.obj,2));
 			break;
 		case kOpEndRepeat:
 			code.write(" ");
 			code.write(posToString(bytecode.pos - bytecode.obj));
+			code.write(" ");
+			code.write(hexToString(bytecode.obj,2));
 			break;
 		case kOpPushFloat32:
 			code.write(" ");
 			code.write(Common::floatToString(*(float *)(&bytecode.obj)));
+			code.write(" ");
+			code.write(hexToString(bytecode.obj,4));
 			break;
 		default:
 			if (bytecode.opID > 0x40) {
 				code.write(" ");
 				code.write(std::to_string(bytecode.obj));
+				code.write(" ");
+				code.write(hexToString(bytecode.obj,1));
 			}
 			break;
 		}
