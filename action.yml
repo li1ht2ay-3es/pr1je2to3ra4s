@@ -48,6 +48,9 @@ runs:
       sudo apt-get install \
         libboost-all-dev \
         libmpg123-dev
+      ./bootstrap.sh --prefix=/usr/
+      ./b2
+      sudo ./b2 install
       boost --version
 
 
