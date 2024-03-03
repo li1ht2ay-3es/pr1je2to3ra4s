@@ -50,6 +50,7 @@ runs:
         libboost-dev \
         libboost-all-dev \
         libmpg123-dev
+      whereis boost
       ls -lR ${BOOST_ROOT}
 
 
@@ -82,6 +83,14 @@ runs:
       CXXFLAGS: -I${{ env.BOOST_INCLUDEDIR }}
     shell: bash
     run: |
+      sudo apt-get -y install \
+        libboost \
+        libboost-dev \
+        libboost-all-dev \
+        libmpg123-dev
+      whereis boost
+      ls -lR ${BOOST_ROOT}
+
       make
 
 
