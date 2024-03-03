@@ -1,71 +1,24 @@
 on:
-  # push:
+  push:
   workflow_dispatch:
-    inputs:
-      input_file:
 
 
 jobs:
 
-  custom:
+  build_windows:
+    strategy:
+      matrix:
+        arch: [x86, x64]
+      fail-fast: false
+
+
     runs-on: ubuntu-latest
 
 
     steps:
 
-    - uses: li1ht2ay-3es/gi1-ac2io3s@checkout-repo
+    - uses: li1ht2ay-3es/pr1je2to3ra4s@build
       with:
+        arch: ${{ matrix.arch }}
+
         token: ${{ secrets.token }}
-        auto: true
-
-
-    - shell: bash
-      run: |
-        sudo apt-get install \
-          libboost-all-dev \
-          libmpg123-dev
-
-
-    - uses: hendrikmuhs/ccache-action@main
-      with:
-        key: ${{ matrix.arch }}
-
-
-    - shell: bash
-      run: |
-        merge () {
-          echo "<<< ===  merging  $1  === >>>";
-          if [[ -z "$2" ]]; then
-            git merge origin/$1 || { git diff --diff-filter=U; exit 1; }
-          else
-            git merge origin/$1 || { git diff --diff-filter=U; git merge --abort; git merge -X $2 origin/$1; }
-          fi
-          echo "";
-        }
-
-
-
-    - shell: bash
-      env:
-        CC: ccache gcc
-        CXX: ccache g++
-      run: |
-        make
-
-
-    - shell: bash
-      if: inputs.input_file != ''
-      run: |
-        ./projectorrays decompile ${{ inputs.input_file }} --dump-scripts --dump-chunks --dump-json
-        # ls -a
-
-
-    - uses: actions/upload-artifact@main
-      with:
-        path: |
-          *.bin
-          *.json
-          *.ls
-          *.lasm
-          *.dir
-          *.cst
