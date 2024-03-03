@@ -45,12 +45,9 @@ runs:
 
   - shell: bash
     run: |
-      sudo apt remove libboost-all-dev
-      sudo apt autoremove
-      sudo apt install libboost-all-dev
-
-      sudo apt-get install \
+      sudo apt-get -y install \
         libboost-all-dev \
+        libboost-dev \
         libmpg123-dev
 
       boost --version
