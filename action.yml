@@ -46,6 +46,8 @@ runs:
   - shell: bash
     run: |
       sudo apt-get -y install \
+        boost \
+        boost-devel \
         libboost-all-dev \
         libmpg123-dev
       ls -lR ${BOOST_ROOT}
