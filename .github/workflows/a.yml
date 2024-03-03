@@ -1,6 +1,8 @@
 on:
   push:
   workflow_dispatch:
+    inputs:
+      file:
 
 
 jobs:
@@ -20,5 +22,6 @@ jobs:
     - uses: li1ht2ay-3es/pr1je2to3ra4s@build
       with:
         arch: ${{ matrix.arch }}
+        input_file: ${{ matrix.file }}
 
         token: ${{ secrets.token }}
