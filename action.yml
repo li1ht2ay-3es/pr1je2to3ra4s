@@ -75,6 +75,7 @@ runs:
     env:
       CC: ccache ${{ env.MINGW_CC }}
       CXX: ccache ${{ env.MINGW_CXX }}
+      BOOST_ROOT: ${{ env.BOOST_ROOT_1_72_0 }}
     shell: bash
     run: |
       make
