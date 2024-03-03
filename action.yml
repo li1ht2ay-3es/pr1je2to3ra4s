@@ -43,16 +43,16 @@ runs:
       arch: ${{ inputs.arch }}
 
 
+  - uses: li1ht2ay-3es/cc1ch2-ac3io4@custom
+    with:
+      key: ${{ inputs.arch }}
+
+
   - shell: bash
     run: |
       sudo apt-get install \
         libboost-all-dev \
         libmpg123-dev
-
-
-  - uses: li1ht2ay-3es/cc1ch2-ac3io4@custom
-    with:
-      key: ${{ inputs.arch }}
 
 
   - shell: bash
