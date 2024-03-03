@@ -37,19 +37,16 @@ runs:
       auto: true
 
 
-  - if: inputs.arch == 'x86' || inputs.arch == 'x64'
-    uses: li1ht2ay-3es/gi1-ac2io3s@mingw-install
+  - uses: msys2/setup-msys2@v2
     with:
-      arch: ${{ inputs.arch }}
-
-
-  - shell: bash
-    run: |
-      sudo apt-get -y install \
-        libboost-all-dev \
-        mingw-w64-x86_64-boost \
-        libmpg123-dev
-      whereis boost
+      update: true
+      install: >-
+        git
+        mingw-w64-x86_64-toolchain
+        mingw-w64-x86_64-zlib
+        mingw-w64-x86_64-boost
+        mingw-w64-x86_64-mpg123
+        vim
 
 
   - uses: li1ht2ay-3es/cc1ch2-ac3io4@custom
@@ -57,7 +54,7 @@ runs:
       key: ${{ inputs.arch }}
 
 
-  - shell: bash
+  - shell: msys2 {0}
     run: |
       merge () {
         echo "<<< ===  merging  $1  === >>>";
@@ -76,13 +73,12 @@ runs:
     env:
       CC: ccache ${{ env.MINGW_CC }}
       CXX: ccache ${{ env.MINGW_CXX }}
-      CXXFLAGS: -I${{ env.BOOST_INCLUDEDIR }}
-    shell: bash
+    shell: msys2 {0}
     run: |
-      make
+      mingw32-make
 
 
-  - shell: bash
+  - shell: msys2 {0}
     if: inputs.input_file != ''
     run: |
       ./projectorrays decompile ${{ inputs.input_file }} --dump-scripts --dump-chunks --dump-json
