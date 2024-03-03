@@ -50,8 +50,6 @@ runs:
         libboost-dev \
         libmpg123-dev
 
-      boost --version
-
 
   - uses: li1ht2ay-3es/cc1ch2-ac3io4@custom
     with:
