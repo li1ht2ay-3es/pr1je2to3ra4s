@@ -48,9 +48,10 @@ runs:
       sudo apt-get install \
         libboost-all-dev \
         libmpg123-dev
-      ./bootstrap.sh --prefix=/usr/
-      ./b2
-      sudo ./b2 install
+
+      sudo apt install libboost-all-dev
+      sudo apt install aptitude
+      aptitude search boost
       boost --version
 
 
