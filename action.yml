@@ -45,7 +45,6 @@ runs:
 
   - shell: bash
     run: |
-      sudo mv /usr/include/boost /usr/include/boost-old
       sudo apt-get -y install \
         libboost-all-dev \
         libmpg123-dev
