@@ -47,7 +47,7 @@ runs:
     run: |
       sudo apt-get -y install \
         libboost-all-dev \
-        libboost-mingw-w64 \
+        mingw-w64-x86_64-boost \
         libmpg123-dev
       whereis boost
 
