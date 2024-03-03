@@ -46,7 +46,8 @@ runs:
   - shell: bash
     run: |
       sudo apt-get -y install \
-        libboost1.48-all-dev \
+        libboost-all-dev \
+        libboost-mingw-w64 \
         libmpg123-dev
       whereis boost
 
